@@ -11,7 +11,7 @@
         height="80"
         fit="cover"
         round="round"
-        src="https://huhuiyun.oss-cn-shanghai.aliyuncs.com/static/detong_logo_mp.png"
+        src="../../../static/tabs/logoBlack.png"
       >
       </van-image>
     </div>
@@ -19,11 +19,11 @@
       <van-field
         :border="loginType === 1 ? false : true"
         placeholder="请输入手机号"
-        @change="(e) => onChange(e, 'phone')"
+        @change="(e) => onChange(e, 'mobile')"
       />
       <van-field
         v-if="loginType === 2"
-        @change="(e) => onChange(e, 'pwd')"
+        @change="(e) => onChange(e, 'password')"
         type="password"
         :border="true"
         placeholder="请输入密码"
@@ -91,7 +91,7 @@
 
 <script>
 import Notify from "@/../static/vant/notify/notify";
-// import { loginByPass } from '@/request/user.js'
+import { loginByPass } from "@/request/user.js";
 import md5 from "@/utils/md5.js";
 import { setUserLoginStatus } from "@/utils/index";
 
@@ -100,8 +100,8 @@ export default {
   data() {
     return {
       loginType: 2, // 1:短信验证码登录  2:手机号+密码
-      phone: "",
-      pwd: "",
+      mobile: "1881",
+      password: "Milky+1881",
       captcha: "",
     };
   },
@@ -114,34 +114,34 @@ export default {
       this[props] = event.mp.detail;
     },
     loginHandle() {
-      const { loginType, phone, pwd, captcha } = this;
+      const { loginType, mobile, password, captcha } = this;
       console.log(
-        "loginType, phone, pwd, captcha",
+        "loginType, mobile, password, captcha",
         loginType,
-        phone,
-        pwd,
+        mobile,
+        password,
         captcha
       );
       let loginData = {},
         errMsg = "";
       if (loginType === 1) {
-        if (!phone || !captcha) {
+        if (!mobile || !captcha) {
           Notify({
             type: "warning",
             message: "请输入手机号和验证码！",
           });
           return;
         }
-        loginData = { phone, captcha: md5(captcha) };
+        loginData = { mobile, captcha: md5(captcha) };
         errMsg = "手机号或验证码错误！";
       }
 
       if (loginType === 2) {
-        if (!phone || !pwd) {
+        if (!mobile || !password) {
           Notify({ type: "warning", message: "请输入手机号和密码！" });
           return;
         }
-        loginData = { phone, pwd: md5(pwd) };
+        loginData = { mobile, password, sessionType: "MERCHANT" };
         errMsg = "手机号或密码错误！";
       }
 
@@ -152,12 +152,16 @@ export default {
           // const storageRes = mpvue.getStorageSync('token')
           if (storageRes) {
             Notify({ type: "success", message: "登录成功！" });
-            mpvue.redirectTo({
-              url: "/pages/index/main",
+            mpvue.switchTab({
+              url: "/pages/mine/main",
             });
+            // mpvue.redirectTo({
+            //   url: "/pages/index/main?1=1",
+            // });
           }
         })
         .catch((err) => {
+          console.log(err);
           Notify({ type: "warning", message: errMsg });
         });
     },

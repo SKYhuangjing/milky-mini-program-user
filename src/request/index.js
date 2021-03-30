@@ -1,7 +1,6 @@
 const config = {
     // 接口的根路径
-    // baseUrl: 'http://127.0.0.1:5000/api',// https://m.yunhuiyuan.cn
-    baseUrl: 'http://192.168.1.12:5000/api',// https://m.yunhuiyuan.cn
+    baseUrl: 'http://127.0.0.1:7001',// https://m.yunhuiyuan.cn
     // 超时时间
     timeout: 150000,
     // 设置请求的 header
@@ -12,10 +11,10 @@ const config = {
     interceptors: {
         // 请求拦截
         request(configs) {
-            let token = mpvue.getStorageSync('token')
-            if (token) {
-                configs.headers['Authorization'] = "Bearer " + token
-            }
+            // let token = mpvue.getStorageSync('token')
+            // if (token) {
+            //     configs.headers['Authorization'] = "Bearer " + token
+            // }
             return configs
         },
         // 响应拦截
@@ -23,7 +22,7 @@ const config = {
             let {
                 data: { data, code },
             } = wxRes;
-            if (code === 200) {
+            if (code === "SUCCESS") {
                 return data
             } else {
                 return false

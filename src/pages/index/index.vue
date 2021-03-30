@@ -5,7 +5,7 @@
 -->
 <template>
   <div class="page">
-    首页 TODO
+    ${店家名}
     <swiper
       class="s-swiper"
       indicator-dots="true"
@@ -19,13 +19,96 @@
         </swiper-item>
       </block>
     </swiper>
+
+    <div style="margin-top: 12px">
+      <div class="s-card">
+        <div class="sc-title">
+          <div class="sc-title-text">头条</div>
+        </div>
+        <div class="sc-content s-sc-content">
+          <div class="CustomerCell">
+            <CustomerCell
+              @clickHandle="scanQrCodeHandle"
+              :text="'扫一扫'"
+              :url="'https://huhuiyun.oss-cn-shanghai.aliyuncs.com/static/%E6%89%AB%E4%B8%80%E6%89%AB.svg'"
+            ></CustomerCell>
+          </div>
+          <div class="CustomerCell">
+            <CustomerCell
+              @clickHandle="publicAnnouncementHandle"
+              :text="'公示公告'"
+              :url="'https://huhuiyun.oss-cn-shanghai.aliyuncs.com/static/%E5%8A%A8%E6%80%81%E5%85%AC%E5%91%8A.svg'"
+            ></CustomerCell>
+          </div>
+        </div>
+      </div>
+
+      <div class="s-card">
+        <div class="sc-title">
+          <div class="sc-title-text">当前热推</div>
+        </div>
+        <div class="sc-content s-sc-content">
+          <div class="CustomerCell">
+            <CustomerCell
+              @clickHandle="scanQrCodeHandle"
+              :text="'万事屋'"
+              :url="'https://huhuiyun.oss-cn-shanghai.aliyuncs.com/static/%E7%A4%BE%E5%8C%BA%E7%AE%A1%E7%90%86.svg'"
+            ></CustomerCell>
+          </div>
+          <div class="CustomerCell">
+            <CustomerCell
+              @clickHandle="publicAnnouncementHandle"
+              :text="'黑羊公馆'"
+              :url="'https://huhuiyun.oss-cn-shanghai.aliyuncs.com/static/%E5%A4%A7%E6%A5%BC%2C%E5%BB%BA%E7%AD%91.svg'"
+            ></CustomerCell>
+          </div>
+          <div class="CustomerCell">
+            <CustomerCell
+              @clickHandle="publicAnnouncementHandle"
+              :text="'蛊魂灵'"
+              :url="'https://huhuiyun.oss-cn-shanghai.aliyuncs.com/static/%E5%A4%A7%E6%A5%BC%2C%E5%BB%BA%E7%AD%91.svg'"
+            ></CustomerCell>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <map
+        class="map"
+        :markers="marker"
+        :scale="scale"
+        :latitude="latitude"
+        :longitude="longitude"></map>
+    </div>
   </div>
 </template>
 
 <script>
+import CustomerCell from "@/components/CustomerCell.vue";
 export default {
   data() {
     return {
+      marker: [
+        {
+          callout: {
+            content: "莫慌·探谜推理剧社",
+            padding: 12,
+            display: "ALWAYS",
+            fontSize: 14,
+            textAlign: "center",
+            borderRadius: 5,
+            borderWidth: 2,
+            bgColor: "#ffffff",
+          },
+          latitude: 31.273092,
+          longitude: 121.47798,
+          width: 10,
+          height: 18,
+        },
+      ],
+      scale: 16,
+      latitude: 31.273092,
+      longitude: 121.47798,
       movies: [
         {
           url:
@@ -42,6 +125,7 @@ export default {
       ],
     };
   },
+  components: { CustomerCell },
   created() {},
   mounted() {},
   methods: {
@@ -104,5 +188,9 @@ export default {
 }
 .CustomerCell {
   margin-right: 24px;
+}
+.map {
+  width: auto;
+  height: 200px;
 }
 </style>
