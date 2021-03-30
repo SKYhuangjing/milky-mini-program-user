@@ -69,6 +69,8 @@
     "van-collapse-item": "/static/vant/collapse-item/index",
     "van-card": "/static/vant/card/index",
     "van-tag": "/static/vant/tag/index",
-    "van-search": "/static/vant/search/index"
+    "van-search": "/static/vant/search/index",
+    "van-notice-bar": "static/vant/notice-bar/index",
+    "van-share-sheet": "static/vant/share-sheet/index"
   }
 }

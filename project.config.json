@@ -20,7 +20,7 @@
     "compileHotReLoad": false,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
-    "useApiHostProcess": true,
+    "useApiHostProcess": false,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -38,7 +38,7 @@
   },
   "miniprogramRoot": "dist/wx/",
   "compileType": "miniprogram",
-  "appid": "wxf71b5f57c13b38fa",
+  "appid": "wxa11c3e19706b0520",
   "projectname": "milky-wechat-user",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},

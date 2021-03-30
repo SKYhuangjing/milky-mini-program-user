@@ -11,7 +11,7 @@
         height="80"
         fit="cover"
         round="round"
-        src="../../../static/tabs/logoBlack.png"
+        src="/static/tabs/logoBlack.png"
       >
       </van-image>
     </div>

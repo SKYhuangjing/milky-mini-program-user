@@ -5,7 +5,15 @@
 -->
 <template>
   <div class="page">
-    ${店家名}
+    <span style="font-weight: bold">莫慌探谜推理剧社</span>
+    <van-icon style="float: right" name="share-o" @click="onClick" />
+    <van-share-sheet
+      :show="showShare"
+      title="立即分享给好友"
+      :options="options"
+      @select="onSelect"
+      @close="onClose"
+    />
     <swiper
       class="s-swiper"
       indicator-dots="true"
@@ -19,30 +27,8 @@
         </swiper-item>
       </block>
     </swiper>
-
+    <van-notice-bar left-icon="volume-o" text="开发测试中, 请支持莫慌" />
     <div style="margin-top: 12px">
-      <div class="s-card">
-        <div class="sc-title">
-          <div class="sc-title-text">头条</div>
-        </div>
-        <div class="sc-content s-sc-content">
-          <div class="CustomerCell">
-            <CustomerCell
-              @clickHandle="scanQrCodeHandle"
-              :text="'扫一扫'"
-              :url="'https://huhuiyun.oss-cn-shanghai.aliyuncs.com/static/%E6%89%AB%E4%B8%80%E6%89%AB.svg'"
-            ></CustomerCell>
-          </div>
-          <div class="CustomerCell">
-            <CustomerCell
-              @clickHandle="publicAnnouncementHandle"
-              :text="'公示公告'"
-              :url="'https://huhuiyun.oss-cn-shanghai.aliyuncs.com/static/%E5%8A%A8%E6%80%81%E5%85%AC%E5%91%8A.svg'"
-            ></CustomerCell>
-          </div>
-        </div>
-      </div>
-
       <div class="s-card">
         <div class="sc-title">
           <div class="sc-title-text">当前热推</div>
@@ -52,24 +38,49 @@
             <CustomerCell
               @clickHandle="scanQrCodeHandle"
               :text="'万事屋'"
-              :url="'https://huhuiyun.oss-cn-shanghai.aliyuncs.com/static/%E7%A4%BE%E5%8C%BA%E7%AE%A1%E7%90%86.svg'"
+              :url="'/static/tabs/logoBlack.png'"
             ></CustomerCell>
           </div>
           <div class="CustomerCell">
             <CustomerCell
               @clickHandle="publicAnnouncementHandle"
               :text="'黑羊公馆'"
-              :url="'https://huhuiyun.oss-cn-shanghai.aliyuncs.com/static/%E5%A4%A7%E6%A5%BC%2C%E5%BB%BA%E7%AD%91.svg'"
+              :url="'/static/tabs/logoBlack.png'"
             ></CustomerCell>
           </div>
           <div class="CustomerCell">
             <CustomerCell
               @clickHandle="publicAnnouncementHandle"
               :text="'蛊魂灵'"
-              :url="'https://huhuiyun.oss-cn-shanghai.aliyuncs.com/static/%E5%A4%A7%E6%A5%BC%2C%E5%BB%BA%E7%AD%91.svg'"
+              :url="'/static/tabs/logoBlack.png'"
             ></CustomerCell>
           </div>
         </div>
+      </div>
+      <div class="s-card">
+        <div class="sc-title">
+          <div class="sc-title-text">联系我们</div>
+        </div>
+        <van-cell-group>
+          <van-cell
+            title="微信号"
+            icon="chat-o"
+            value="18817577050"
+            @click="onCopyClick('18817577050')"
+          />
+          <van-cell
+            title="手机号"
+            icon="phone-o"
+            value="18817577050"
+            @click="onCopyClick('18817577050')"
+          />
+          <van-cell
+            title="地址"
+            icon="location-o"
+            value="怡景大厦西北门地下酒窖左侧"
+            @click="onCopyClick('怡景大厦西北门地下酒窖左侧')"
+          />
+        </van-cell-group>
       </div>
     </div>
     <div>
@@ -78,7 +89,8 @@
         :markers="marker"
         :scale="scale"
         :latitude="latitude"
-        :longitude="longitude"></map>
+        :longitude="longitude"
+      ></map>
     </div>
   </div>
 </template>
@@ -91,7 +103,7 @@ export default {
       marker: [
         {
           callout: {
-            content: "莫慌·探谜推理剧社",
+            content: "莫慌探谜推理剧社",
             padding: 12,
             display: "ALWAYS",
             fontSize: 14,
@@ -111,17 +123,19 @@ export default {
       longitude: 121.47798,
       movies: [
         {
-          url:
-            "https://huhuiyun.oss-cn-shanghai.aliyuncs.com/static/FoVjqPJ5uXGo16reLHPS9E5CUuci_FoVjqPJ5uXGo16reLHPS9E5CUuci_FoVjqPJ5uXGo16reLHPS9E5CUuci.jpeg",
+          url: "/static/images/demo1.jpeg",
         },
         {
-          url:
-            "https://huhuiyun.oss-cn-shanghai.aliyuncs.com/static/FoVjqPJ5uXGo16reLHPS9E5CUuci_FoVjqPJ5uXGo16reLHPS9E5CUuci_FoVjqPJ5uXGo16reLHPS9E5CUuci.jpeg",
+          url: "/static/images/demo2.jpeg",
         },
-        {
-          url:
-            "https://huhuiyun.oss-cn-shanghai.aliyuncs.com/static/FoVjqPJ5uXGo16reLHPS9E5CUuci_FoVjqPJ5uXGo16reLHPS9E5CUuci_FoVjqPJ5uXGo16reLHPS9E5CUuci.jpeg",
-        },
+      ],
+      showShare: false,
+      options: [
+        { name: "微信", icon: "wechat", openType: "share" },
+        { name: "微博", icon: "weibo" },
+        { name: "复制链接", icon: "link" },
+        { name: "分享海报", icon: "poster" },
+        { name: "二维码", icon: "qrcode" },
       ],
     };
   },
@@ -129,43 +143,24 @@ export default {
   created() {},
   mounted() {},
   methods: {
-    scanQrCodeHandle() {
-      // 只允许从相机扫码
-      wx.scanCode({
-        onlyFromCamera: true,
+    onClick(event) {
+      this.showShare = true;
+    },
+
+    onClose() {
+      this.showShare = false;
+    },
+    onSelect(event) {
+      Toast(event.detail.name);
+      this.onClose();
+    },
+    onCopyClick(value) {
+      mpvue.setClipboardData({
+        data: value,
         success(res) {
-          const { result } = res;
-          try {
-            const parsed = JSON.parse(result);
-            const { flowId, currentNode, ownersGroup } = parsed;
-            if (!flowId || !currentNode) {
-              Notify({
-                type: "warning",
-                message: "错误的二维码类型！",
-              });
-              return;
-            }
-            let url = `/pages/relatedDocuments/main?flowId=${flowId}&currentNode=${currentNode}`;
-            if (ownersGroup) {
-              url = `/pages/relatedDocuments/main?flowId=${flowId}&currentNode=${currentNode}&ownersGroup=${ownersGroup}`;
-            }
-            mpvue.navigateTo({
-              url,
-            });
-          } catch (error) {
-            Notify({
-              type: "warning",
-              message: "错误的二维码类型！",
-            });
-          }
-        },
-        fail(err) {
-          console.log("scanCode->err", err);
+          console.log(value);
         },
       });
-    },
-    publicAnnouncementHandle() {
-      mpvue.navigateTo({ url: "/pages/publicAnnouncement/main" });
     },
   },
 };
