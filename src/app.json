@@ -1,0 +1,84 @@
+{
+  "pages": [
+    "pages/index/main",
+    "pages/login/main",
+    "pages/mine/main",
+    "pages/game/main",
+    "pages/car/main"
+  ],
+  "style": "v2",
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarTitleText": "Milky 剧本",
+    "navigationBarTextStyle": "white",
+    "navigationBarBackgroundColor": "#2140D9"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "tabBar": {
+    "color": "#999",
+    "backgroundColor": "#fafafa",
+    "selectedColor": "#333",
+    "borderStyle": "white",
+    "list": [{
+        "text": "首页",
+        "pagePath": "pages/index/main",
+        "iconPath": "static/tabs/ico_sy_nor@2x.png",
+        "selectedIconPath": "static/tabs/ico_sy_xz@2x.png"
+      },
+      {
+        "text": "剧本",
+        "pagePath": "pages/game/main",
+        "iconPath": "static/tabs/ico_wd_nor@2x.png",
+        "selectedIconPath": "static/tabs/ico_wd_xz@2x.png"
+      },
+      {
+        "text": "拼车",
+        "pagePath": "pages/car/main",
+        "iconPath": "static/tabs/ico_wd_nor@2x.png",
+        "selectedIconPath": "static/tabs/ico_wd_xz@2x.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/mine/main",
+        "iconPath": "static/tabs/ico_wd_nor@2x.png",
+        "selectedIconPath": "static/tabs/ico_wd_xz@2x.png"
+      }
+    ],
+    "items": [{
+        "name": "首页",
+        "pagePath": "pages/index/main",
+        "icon": "static/tabs/home.png",
+        "activeIcon": "static/tabs/home-active.png"
+      },
+      {
+        "name": "登录",
+        "pagePath": "pages/login/main",
+        "icon": "static/tabs/orders.png",
+        "activeIcon": "static/tabs/orders-active.png"
+      }
+    ],
+    "position": "bottom"
+  },
+  "usingComponents": {
+    "van-button": "/static/vant/button/index",
+    "van-cell": "/static/vant/cell/index",
+    "van-cell-group": "/static/vant/cell-group/index",
+    "van-image": "/static/vant/image/index",
+    "van-notify": "/static/vant/notify/index",
+    "van-field": "/static/vant/field/index",
+    "van-divider": "/static/vant/divider/index",
+    "van-uploader": "/static/vant/uploader/index",
+    "van-icon": "/static/vant/icon/index",
+    "van-dialog": "/static/vant/dialog/index",
+    "van-radio": "/static/vant/radio/index",
+    "van-radio-group": "/static/vant/radio-group/index",
+    "van-dropdown-menu": "/static/vant/dropdown-menu/index",
+    "van-dropdown-item": "/static/vant/dropdown-item/index",
+    "van-collapse": "/static/vant/collapse/index",
+    "van-collapse-item": "/static/vant/collapse-item/index"
+  }
+}
