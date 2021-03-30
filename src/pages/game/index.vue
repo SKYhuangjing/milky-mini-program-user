@@ -22,7 +22,7 @@
         <van-card
           :desc="item.desc"
           :title="item.name"
-          thumb="/static/tabs/logoVBlack.png"
+          thumb="/static/logos/LogoVBlack.svg"
         >
           <view slot="tags">
             <block

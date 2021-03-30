@@ -38,21 +38,21 @@
             <CustomerCell
               @clickHandle="scanQrCodeHandle"
               :text="'万事屋'"
-              :url="'/static/tabs/logoBlack.png'"
+              :url="'/static/logos/LogoBlack.svg'"
             ></CustomerCell>
           </div>
           <div class="CustomerCell">
             <CustomerCell
               @clickHandle="publicAnnouncementHandle"
               :text="'黑羊公馆'"
-              :url="'/static/tabs/logoBlack.png'"
+              :url="'/static/logos/LogoBlack.svg'"
             ></CustomerCell>
           </div>
           <div class="CustomerCell">
             <CustomerCell
               @clickHandle="publicAnnouncementHandle"
               :text="'蛊魂灵'"
-              :url="'/static/tabs/logoBlack.png'"
+              :url="'/static/logos/LogoBlack.svg'"
             ></CustomerCell>
           </div>
         </div>
