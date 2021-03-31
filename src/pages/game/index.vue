@@ -59,7 +59,28 @@ export default {
         },
         {
           name: "万事屋",
+          desc: "万事屋",
+          weekdayPrice: 99,
+          weekendPrice: 149,
+          style: ["日式", "情感"],
+        },
+        {
+          name: "黑羊公馆",
           desc: "xx",
+          weekdayPrice: 99,
+          weekendPrice: 149,
+          style: ["日式", "情感"],
+        },
+        {
+          name: "蛊魂铃",
+          desc: "蛊魂铃",
+          weekdayPrice: 99,
+          weekendPrice: 149,
+          style: ["日式", "情感"],
+        },
+        {
+          name: "木兮僧",
+          desc: "木兮僧",
           weekdayPrice: 99,
           weekendPrice: 149,
           style: ["日式", "情感"],
